@@ -4,7 +4,11 @@ import React from "react";
 import { useState } from "react";
 import "./SearchBar.css";
 
-const SearchBar = (props) => {
+type SearchBarProps = {
+    products: string[];
+};
+
+const SearchBar = ({ products }: SearchBarProps) => {
     const [searchValue, setSearchValue] = useState("Search for an item")
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -17,7 +21,7 @@ const SearchBar = (props) => {
 
     const shouldDisplayButton = searchValue.length > 0;
 
-    const filteredProducts = props.products.filter((product) => {
+    const filteredProducts = products.filter((product) => {
         return product.includes(searchValue)
     });
 

@@ -10,13 +10,22 @@ import ParagraphLink from "../components/ParagraphLink/ParagraphLink";
 
 export default function Home() {
 
-  const [productsState, setProductsState] = useState([])
+  const [productsState, setProductsState] = useState<string[]>([])
+
+  type Product = {
+  id: number;
+  title: string;
+  price: number;
+  description: string;  
+  category: string;
+  image: string;
+  };
 
   useEffect(() => {
 
     fetch('https://fakestoreapi.com/products')
       .then(res => res.json())
-      .then((productsArray) => {
+      .then((productsArray: Product[]) => {
         const newProductsState = productsArray.map((product) => {
           return product.title + " $" + product.price
         })
